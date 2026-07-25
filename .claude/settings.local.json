@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(python batch_import.py)",
-      "Bash(python build.py)"
+      "Bash(python build.py)",
+      "Bash(python \"c:/Users/DELL/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"card layout reading content hierarchy navigation search documentation\" --domain ux -n 5)"
     ]
   }
 }
