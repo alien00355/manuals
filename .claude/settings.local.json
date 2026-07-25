@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python batch_import.py)",
+      "Bash(python build.py)"
+    ]
+  }
+}
