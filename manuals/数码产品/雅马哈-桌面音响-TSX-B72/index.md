@@ -19,9 +19,9 @@ model: TSX-B72
 
 顶部：15 cm
 
-背面: $10 \mathrm{~cm}$ 
+背面: 10 cm 
 
-侧面: $10 \mathrm{~cm}$ 
+侧面: 10 cm 
 
 3 请将本机远离其它电子设备、马达或变压器以避免嗡嗡声。
 
@@ -84,19 +84,19 @@ model: TSX-B72
 
 - 使用频率：2.4 - 2.4835 GHz
 
-- 等效全向辐射功率（EIRP）：天线增益 $< 10 \mathrm{~dBi}$ 时： $\leqslant 100 \mathrm{~mW}$ 或 $\leqslant 20 \mathrm{~dBm}$ 
+- 等效全向辐射功率（EIRP）：天线增益 $< 10 {~dBi}$ 时： $\leqslant 100 {~mW}$ 或 $\leqslant 20 {~dBm}$ 
 
 - 最大功率谱密度：天线增益 $< 10$ dBi时： $\leqslant 20$ dBm/MHz（EIRP）
 
-- 载频容限: $20 \mathrm{ppm}$ 
+- 载频容限: 20 ppm 
 
 - 带外发射功率（在 2.4-2.4835GHz 频段以外） $\leqslant -80$ dBm / Hz (EIRP)
 
 - 杂散发射（辐射）功率（对应载波±2.5倍信道带宽以外）：
 
-$\leqslant -36 \text{ dBm} / 100 \text{ kHz (30 - 1000 MHz)}$ 
+$\leqslant -36 { dBm} / 100 { kHz (30 - 1000 MHz)}$ 
 
-$\leqslant -40 \mathrm{~dBm} / 1 \mathrm{MHz}$ (3.4 - 3.53 GHz) 
+$\leqslant -40 {~dBm} / 1 {MHz}$ (3.4 - 3.53 GHz) 
 
 2. 不得擅自更改发射频率、加大发射功率（包括额外加装射频功率放大器），不得擅自外接天线或改用其它发射天线；
 
@@ -108,15 +108,11 @@ $\leqslant -40 \mathrm{~dBm} / 1 \mathrm{MHz}$ (3.4 - 3.53 GHz)
 
 仅适用于海拔2000m以下地区安全使用。
 
-$$
-2 0 0 0 \mathrm{m} \text {  रूव  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथा  } \text {  अन्यानिक  त्राथा  }
-$$
 
-རྒྱ་མཚོའི་ངོས་ལས་མཛོ་ཚད་སྐྱི་2000མན་གྲི་ས་ཁུལ་པོ་ནར་ཉེན་མེད་བེད་སྤྱོད་བྱས་འབྱས། 
 
-$$
-\text { دېڭىز  يۆزىدىن } 2 0 0 0 \text { مېتر  تۆۋەن  رايونلاردلا  بىخەتەر  ئىشلىتكىلى  بولىدۇ }
-$$
+
+
+
 
 Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh. 
 
@@ -138,7 +134,7 @@ Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh.
 
 - 高质量播放支持 Bluetooth 的智能手机 / 平板电脑，以及收音机和外接设备。通过 NFC 技术实现单触配对。
 
-- 小巧机身中包含了可提供浑厚的低音和嘹亮的立体声的 2.1 声道有源扬声器（高音扬声器 $\times$ 2，低音扬声器 $\times$ 1）、SRBass™（Yamaha Swing Radiator Bass 技术）和 DSP。
+- 小巧机身中包含了可提供浑厚的低音和嘹亮的立体声的 2.1 声道有源扬声器（高音扬声器 × 2，低音扬声器 × 1）、SRBass™（Yamaha Swing Radiator Bass 技术）和 DSP。
 
 - 便捷直观的用户界面，上面带有LED按钮和各种旋钮。
 
@@ -356,7 +352,7 @@ Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh.
 
 可设定 30、60、90 或 120 分钟。
 
-当睡眠功能开启时，睡眠指示（ $\mathbf{z}^{\mathbf{z}}$ ）亮起。
+当睡眠功能开启时，睡眠指示（ ${z}^{{z}}$ ）亮起。
 
 若要取消睡眠模式，请按SNOOZE/SLEEP。
 
@@ -566,7 +562,7 @@ One Day Alarm
 
 - 请勿用布料等遮盖。
 
-- 与进行信号交换的其他设备（支持 Bluetooth 协议 A2DP 的便携式音乐播放器、手机等）安装在同一房间，两者之间的直线距离需在 $10 \mathrm{~m}$ 以内。
+- 与进行信号交换的其他设备（支持 Bluetooth 协议 A2DP 的便携式音乐播放器、手机等）安装在同一房间，两者之间的直线距离需在 10 m 以内。
 
 - 确保本机和 Bluetooth 组件之间没有障碍物。
 
@@ -629,7 +625,7 @@ One Day Alarm
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-07-25/679e2423-2efd-4557-b7c5-f28d51a9c0b3/677eebd7849c62797467d300e001499447d2dae4ab46534251f6291faddc0c62.jpg)
 
 
-1 将 SOURCE 设定为 $\textcircled{※}$ (Bluetooth)。
+1 将 SOURCE 设定为 ※ (Bluetooth)。
 
 ② 通过 Bluetooth 连接本机和其他组件。
 
@@ -662,7 +658,7 @@ One Day Alarm
 Yamaha 不保证本机能连接所有 Bluetooth 组件。
 
 
-按本机上面板的 $\otimes$ (Bluetooth) 也将与最近一次通过 Bluetooth 连接的组件建立连接；但是 SOURCE 不会自动设定为 $\otimes$ (Bluetooth)。
+按本机上面板的 ⊗ (Bluetooth) 也将与最近一次通过 Bluetooth 连接的组件建立连接；但是 SOURCE 不会自动设定为 ⊗ (Bluetooth)。
 
 ## ■ 从其他组件连接
 
@@ -733,9 +729,9 @@ AUX 输入
 • 调谐范围
 FM ..... 87.5 至 108.0 MHz
 
-## Bluetooth
+## Bluetooth (2)
 
-- Bluetooth是一种可在约 $10 \mathrm{~m}$ 范围，采用2.4 GHz的可未经授权使用的频段，在无线通信设备之间的无线通讯技术。
+- Bluetooth是一种可在约 10 m 范围，采用2.4 GHz的可未经授权使用的频段，在无线通信设备之间的无线通讯技术。
 
 - Bluetooth 是 Bluetooth SIG 的注册商标，Yamaha 使用取得了使用许可。
 

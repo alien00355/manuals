@@ -14,7 +14,7 @@ VACUUM INSULATION STAINLESS STEEL MUG/BOTTLE/POT/JAR MANUAL
 
 感谢您选购膳魔师真空保温杯/瓶/壶/罐。使用前请仔细阅读使用说明书，并将其妥善保管，以便在使用中有任何疑问可作为参考之用。Thank you for purchasing "THERMOS" product. Please read this instruction manual carefully before use, and then keep it in right place for further review.
 
-## 王息事项
+## 注意事项
 
 ## ① 材质、使用性能等相关信息详见彩盒。
 

@@ -13,6 +13,13 @@ if sys.platform == "win32":
 
 def fix_content(text: str) -> str:
     """整理一份 Markdown 说明书"""
+    # === 预清理：多行 $$ 乱码块 ===
+    text = re.sub(r"\$\$\s*\n.*?\n\s*\$\$", "", text, flags=re.DOTALL)
+    # 单独一行只有 $$ 的
+    text = re.sub(r"^\$\$\s*$", "", text, flags=re.MULTILINE)
+    # 整段藏文/阿拉伯文乱码行（雅马哈文件）
+    text = re.sub(r"^[ༀ-࿿؀-ۿऀ-ॿ܀-ݏ].*$", "", text, flags=re.MULTILINE)
+
     lines = text.split("\n")
     result = []
     in_frontmatter = False
@@ -75,11 +82,37 @@ def fix_content(text: str) -> str:
             # 按键名称加粗（中文按键）
             line = re.sub(r"(按下|按|点击|轻按)\s*(【?\w+/?\+\-】?|[\u4e00-\u9fff]+键)", r"\1 **\2**", line)
 
-            # === 3. 清理残留格式 ===
-            # LaTeX 公式
-            line = re.sub(r"\$\s*\\mathrm\s*\{\s*~?\s*(\w+)\s*\}", r"\1", line)
+            # === 3. 深度清理 LaTeX 残留 ===
+            # 行内公式: $\mathrm{~cm}$ → cm
+            line = re.sub(r"\$\s*\\mathrm\s*\{([^}]*)\}\s*\$", r"\1", line)
+            line = re.sub(r"\$\s*\\mathsf\s*\{([^}]*)\}\s*\$", r"\1", line)
+            line = re.sub(r"\$\s*\\mathbf\s*\{([^}]*)\}\s*\$", r"\1", line)
             line = re.sub(r"\$\s*\\text\s*\{([^}]*)\}\s*\$", r"\1", line)
-            line = re.sub(r"\$\s*([\d.,\s]+)\s*\$", r"\1", line)
+            # 特殊符号
+            line = line.replace(r"$\times$", "×")
+            line = line.replace(r"$\otimes$", "⊗")
+            line = line.replace(r"$\leqslant$", "≤")
+            line = line.replace(r"$\geqslant$", "≥")
+            line = re.sub(r"\$\\textcircled\{[^}]*\}\$", "※", line)
+            # 数字+单位: $10 \mathrm{~cm}$ → 10 cm
+            line = re.sub(r"\$\s*([\d.,]+)\s*\\mathrm\s*\{~?(\w+)\}\s*\$", r"\1 \2", line)
+            # 度数: $40^{\circ} \mathrm{C}$ → 40°C, $180^{\circ}$ → 180°
+            line = re.sub(r"\$\s*([\d.,]+)\s*\^\{[^}]*\}\s*\$", r"\1°", line)
+            line = re.sub(r"\$\s*([\d.,]+)\s*\\circ\s*\$", r"\1°", line)
+            # 残留简单 $...$ 包裹纯数字
+            line = re.sub(r"\$\s*([\d.,\-+/\s]+)\s*\$", r"\1", line)
+            # 残留 dBi/dBm 等
+            line = re.sub(r"\$\s*(dBi|dBm|dB|MHz|GHz|kHz|mW|ppm)\s*\$", r"\1", line)
+            # \frac{}{} 分数 → 文本
+            line = re.sub(r"\\frac\s*\{([^}]*)\}\s*\{([^}]*)\}", r"\1/\2", line)
+            # 清理 $$...$$ 块（整行乱码）
+            if line.strip().startswith("$$") or line.strip().endswith("$$"):
+                line = ""
+            # LaTeX 残留单词
+            line = line.replace(r"\mathrm", "")
+            line = line.replace(r"\mathsf", "")
+            line = line.replace(r"\mathbf", "")
+            line = line.replace(r"\text", "")
             # 多余空格
             line = re.sub(r" {3,}", "  ", line)
 
@@ -88,11 +121,55 @@ def fix_content(text: str) -> str:
     return "\n".join(result)
 
 
+def dedupe_headings(text: str) -> str:
+    """给重复标题加序号区分（如 维护与保养 → 维护与保养(2)）"""
+    heading_counts = {}
+    lines = text.split("\n")
+    result = []
+    for line in lines:
+        m = re.match(r"^(#{1,4})\s+(.+)$", line)
+        if m:
+            title = m.group(2).strip()
+            if title in heading_counts:
+                heading_counts[title] += 1
+                result.append(f"{m.group(1)} {title} ({heading_counts[title]})")
+            else:
+                heading_counts[title] = 1
+                result.append(line)
+        else:
+            result.append(line)
+    return "\n".join(result)
+
+
+def fix_garbled(text: str) -> str:
+    """修复已知的 OCR 乱码"""
+    fixes = {
+        # 苏泊尔保温杯
+        "形、变色、烤漆脱洁": "变形、变色、烤漆脱落",
+        "不得在血到": "不得在下列情况下使用",
+        "示用语": "警示用语",
+        # 格兰仕电烤箱（三星文本混入）
+        "确保电视不会急放在支撑家具的开缘": "",
+        # 膳魔师
+        "王息事项": "注意事项",
+        # 米家吸尘器
+        "请在使拥本产品先阅读所有说明": "请在使用本产品前阅读所有说明",
+        # 通用问题
+        "急放在": "放置在",
+        "烤漆脱洁": "烤漆脱落",
+    }
+    for old, new in fixes.items():
+        text = text.replace(old, new)
+    return text
+
+
 def process_all():
     processed = 0
     for md_file in sorted(MANUALS_DIR.rglob("index.md")):
         content = md_file.read_text(encoding="utf-8")
         fixed = fix_content(content)
+        fixed = fix_garbled(fixed)
+        fixed = dedupe_headings(fixed)
         if fixed != content:
             md_file.write_text(fixed, encoding="utf-8")
             print(f"  ✅ {md_file.parent.relative_to(MANUALS_DIR)}")

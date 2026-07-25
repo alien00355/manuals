@@ -54,9 +54,9 @@ model:
 
 ▲要单独使用额定电流10A以上，额定电压220V\~带接地线的插座，如果与其它电器合用，插座可能会因发生异常而引起火灾等危险。
 
-## 安全提示
+## 安全提示 (2)
 
-## 【警告】重点安全注意事项
+## 【警告】重点安全注意事项 (2)
 
 如果电源软线损坏，为了避免危险，必须由制造商、其维修部或类似部门的专业人员更换。
 
@@ -120,7 +120,7 @@ model:
 
 <table><tr><td>型号</td><td>额定容量</td><td>额定电压</td><td>额定频率</td><td>额定功率</td></tr><tr><td>MK-YSNC1501</td><td>1.5L</td><td>220V~</td><td>50Hz</td><td>800W</td></tr><tr><td>MK-YSNC1501Pro</td><td>1.5L</td><td>220V~</td><td>50Hz</td><td>800W</td></tr></table>
 
-## 产品简介
+## 产品简介 (2)
 
 ## 操作面板
 
@@ -154,9 +154,9 @@ model:
 
 · 产品在预约结束后同时完成烹煮功能。(烧水功能在预约结束前完成工作)
 
-## 产品简介
+## 产品简介 (3)
 
-## 产品功能描述
+## 产品功能描述 (2)
 
 ## 温馨提示：
 
@@ -200,7 +200,7 @@ model:
 ![](images/abbed8e17da7980a35b4c0d6952cd8fddba2b2e4bd976d71d150df069cef655a.jpg)
 
 
-## 烹煮操作步骤
+## 烹煮操作步骤 (2)
 
 3 点击【电源】键, 产品进入待机状态
 
@@ -248,7 +248,7 @@ model:
 
 当显示屏出现异常显示时，可用以上列表进行判断和处理。若问题无法解决，可联系售后服务进行维修
 
-## 服务指南
+## 服务指南 (2)
 
 <table><tr><td colspan="7">环保清单 产品中有毒有害物质或元素的名称及含量</td></tr><tr><td rowspan="2">部件名称</td><td colspan="6">有毒有害物质或元素</td></tr><tr><td>铅(Pb)</td><td>汞(Hg)</td><td>镉(Cd)</td><td>六价铬 (Cr(VI))</td><td>多溴联苯 (PBB)</td><td>多溴二苯醚(PBDE)</td></tr><tr><td>壶盖组件</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>玻璃壶身</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>手柄组件</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>发热盘组件</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>底盖</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>底座组件</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>蒸笼</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>滤网</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>炖盅</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>蛋架</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td></tr><tr><td>紧固件</td><td>X</td><td>○</td><td>○</td><td>X</td><td>○</td><td>○</td></tr><tr><td>电源线组件</td><td>X</td><td>○</td><td>○</td><td>○</td><td>X</td><td>X</td></tr><tr><td>PCB组件</td><td>X</td><td>○</td><td>○</td><td>○</td><td>X</td><td>X</td></tr></table>
 
