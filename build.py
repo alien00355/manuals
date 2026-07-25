@@ -264,6 +264,10 @@ def build():
             content = md_file.read_text(encoding="utf-8")
             meta, body = parse_frontmatter(content)
 
+            # 检测是否为外部链接型说明书
+            external_link = meta.get("link", "").strip()
+            is_external = bool(external_link)
+
             # 从文件夹名推断信息
             folder_parts = folder_name.split("-") if folder_name else []
 
@@ -273,15 +277,21 @@ def build():
             ptype = meta.get("type", ptype)
             category = meta.get("category", category)
 
-            # 先提取标题结构（从原始 Markdown），再渲染 HTML
-            headings = extract_headings(body)
+            if is_external:
+                # 外部链接型：不渲染 markdown，只记录链接和简要说明
+                headings = []
+                body_html = f'<p>本说明书为在线版本，请点击下方链接查看：</p><p><a href="{escape(external_link)}" target="_blank" rel="noopener" class="external-link-btn">📖 查看说明书 →</a></p>'
+                body_text = body
+            else:
+                # 先提取标题结构（从原始 Markdown），再渲染 HTML
+                headings = extract_headings(body)
 
-            # 渲染 Markdown
-            body_html = md_to_html(body)
-            # 给 HTML 中的标题添加 id，使目录锚点可跳转
-            body_html = add_heading_ids(body_html, headings)
-            # 移除正文中的第一个 h1 标题（已在页面头部显示，避免重复）
-            body_html = re.sub(r"^<h1>.*?</h1>\s*", "", body_html, count=1)
+                # 渲染 Markdown
+                body_html = md_to_html(body)
+                # 给 HTML 中的标题添加 id，使目录锚点可跳转
+                body_html = add_heading_ids(body_html, headings)
+                # 移除正文中的第一个 h1 标题（已在页面头部显示，避免重复）
+                body_html = re.sub(r"^<h1>.*?</h1>\s*", "", body_html, count=1)
 
             # 提取纯文本（用于搜索索引）
             body_text = re.sub(r"<[^>]+>", "", body_html)
@@ -298,6 +308,8 @@ def build():
                 "headings": headings,
                 "path": str(rel_path).replace("\\", "/"),
                 "source_dir": md_file.parent,
+                "is_external": is_external,
+                "external_link": external_link,
             }
 
             manuals.append(manual)
@@ -409,8 +421,14 @@ def build():
 
             # 分类页已经在分类文件夹内，链接只需产品名
             prod_folder = m['id'].rsplit('/', 1)[-1]
+            if m.get("is_external"):
+                href = m["external_link"]
+                target = 'target="_blank" rel="noopener"'
+            else:
+                href = f"{prod_folder}/index.html"
+                target = ""
             product_cards.append(f"""
-            <a href="{prod_folder}/index.html" class="product-card">
+            <a href="{href}" class="product-card" {target}>
                 <div class="product-card-tags">{tags_html}</div>
                 <div class="product-card-title">{escape(m['title'])}</div>
                 <div class="product-card-model">{escape(m['brand'])}</div>
