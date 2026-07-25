@@ -6,7 +6,6 @@ type: 保温杯
 model: 高真空不锈钢
 ---
 
-## THERMOS 隧康師
 
 ![](images/6954832a9693448644745b1fbb494e11072247d912a40cbd6485f9da1fdf293b.jpg)
 

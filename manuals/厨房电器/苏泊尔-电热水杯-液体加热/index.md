@@ -6,7 +6,6 @@ type: 电热水杯
 model: 液体加热器
 ---
 
-## SUPOR 苏泊尔
 
 ![](images/95d00d63ccecd8b0c05c67231c424279ffb6978da3b59e62de2b7b1d77ad3a63.jpg)
 

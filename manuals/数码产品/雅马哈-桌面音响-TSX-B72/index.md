@@ -11,7 +11,7 @@ model: TSX-B72
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-07-25/679e2423-2efd-4557-b7c5-f28d51a9c0b3/42206109520046e85d4f0538f92484083bd68ceccdfa4e87356cd2e4ed2a9f28.jpg)
 
 
-# 注意：在操作本机之前请阅读此部分。
+## 注意：在操作本机之前请阅读此部分。
 
 1 要确保最好的性能，请仔细阅读此手册。请将它保存在安全的地方以备将来参考。
 
@@ -109,13 +109,13 @@ $\leqslant -40 \mathrm{~dBm} / 1 \mathrm{MHz}$ (3.4 - 3.53 GHz)
 仅适用于海拔2000m以下地区安全使用。
 
 $$
-2 0 0 0 \mathrm{m} \text {   रूव   } \text {   अन्यानिक   त्राथांर्व   } \text {   अन्यानिक   त्राथांर्व   } \text {   अन्यानिक   त्राथांर्व   } \text {   अन्यानिक   त्राथांर्व   } \text {   अन्यानिक   त्राथा   } \text {   अन्यानिक   त्राथा   }
+2 0 0 0 \mathrm{m} \text {  रूव  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथांर्व  } \text {  अन्यानिक  त्राथा  } \text {  अन्यानिक  त्राथा  }
 $$
 
 རྒྱ་མཚོའི་ངོས་ལས་མཛོ་ཚད་སྐྱི་2000མན་གྲི་ས་ཁུལ་པོ་ནར་ཉེན་མེད་བེད་སྤྱོད་བྱས་འབྱས། 
 
 $$
-\text { دېڭىز   يۆزىدىن } 2 0 0 0 \text { مېتر   تۆۋەن   رايونلاردلا   بىخەتەر   ئىشلىتكىلى   بولىدۇ }
+\text { دېڭىز  يۆزىدىن } 2 0 0 0 \text { مېتر  تۆۋەن  رايونلاردلا  بىخەتەر  ئىشلىتكىلى  بولىدۇ }
 $$
 
 Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh. 
@@ -176,7 +176,7 @@ Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh.
 请勿让儿童接触 USB 盖，以免被误吞。
 
 
-# 各部位名称及其功能
+## 各部位名称及其功能
 
 ## ■ 前面板
 
@@ -206,7 +206,6 @@ Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh.
 
 ⑧：按此按钮可打开 / 关闭本机。关机时则显示时间。
 
-# 
 
 - 按住 ⏻ 3 秒以上将本机设定为待机模式。前面板显示屏上的所有信息在待机模式时不显示。这样可减少电力消耗。若要取消待机模式，请按下 ⏻。
 
@@ -234,7 +233,6 @@ Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh.
 
 ## ■ 展开拉杆天线
 
-## 注
 
 - 收听 FM 时，请展开天线。
 
@@ -342,7 +340,6 @@ Dan hab yungh youq gij digih haijbaz 2 000 m doxroengz haenx ancienz sawjyungh.
 
 按 ALARM 或 ⏻。
 
-# 
 
 - 若不停止闹铃，闹铃将在60分钟后自动停止。
 
@@ -408,7 +405,6 @@ dtacontroller
 
 https://itunes.apple.com/us/app/dta-controller-us/id549333293?mt=8 
 
-## 注
 
 - 如果无法访问上述信息，请在 App Store 或 Google Play 上搜索 “DTA CONTROLLER”。
 
@@ -441,7 +437,6 @@ One Day Alarm
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-07-25/679e2423-2efd-4557-b7c5-f28d51a9c0b3/e16ba0e28669d3b31884004b331394f12cd2734bc5bca6fbe99eec68b3802131.jpg)
 
 
-## 注
 
 当WeeklyAlarm设定中的所有天都关闭时，无法选择WeeklyAlarm模式。请打开WeeklyAlarm设定中的任一天。
 
@@ -499,7 +494,6 @@ One Day Alarm
 
 ③ 选择您想要将电台存储到的 PRESET 编号。
 
-# 
 
 若要取消预设，则再次按下TUNING。
 
@@ -509,7 +503,7 @@ One Day Alarm
 
 ② 用 PRESET 选择预设电台。
 
-# 通过 USB 端口充电
+## 通过 USB 端口充电
 
 将智能手机或平板电脑等便携式设备连接到本机的 USB 端口即可对连接的设备充电（支持最大 5V/2.1A 的电源）。
 
@@ -527,7 +521,6 @@ One Day Alarm
 
 2 充电完成后，请断开USB电缆与本机的连接。在便携式设备上查看充电状态。
 
-## 注
 
 - 视便携式设备而定，可能无法进行充电。
 
@@ -552,7 +545,6 @@ One Day Alarm
 
 1 使用市售的 3.5 mm 微型插头电缆将便携式音频设备连接至 AUX。
 
-## 注
 
 在连接前，请调低本机和便携式音频设备的音量。
 
@@ -643,7 +635,6 @@ One Day Alarm
 
 ③ 播放 Bluetooth 组件上的音乐。
 
-## 注
 
 请注意不要将本机的音量设定得太高。
 
@@ -667,11 +658,9 @@ One Day Alarm
 
 当建立 Bluetooth 连接时，Bluetooth 指示将亮起。
 
-## 注
 
 Yamaha 不保证本机能连接所有 Bluetooth 组件。
 
-## #
 
 按本机上面板的 $\otimes$ (Bluetooth) 也将与最近一次通过 Bluetooth 连接的组件建立连接；但是 SOURCE 不会自动设定为 $\otimes$ (Bluetooth)。
 
@@ -683,7 +672,6 @@ Yamaha 不保证本机能连接所有 Bluetooth 组件。
 
 将建立Bluetooth连接，本机前面板显示屏上的Bluetooth指示将亮起。
 
-## 注
 
 当本机处于待机模式时，无法从其他组件建立Bluetooth连接。请打开本机电源。
 
@@ -783,5 +771,3 @@ FM ..... 87.5 至 108.0 MHz
 
 ![image](https://cdn-mineru.openxlab.org.cn/result/2026-07-25/679e2423-2efd-4557-b7c5-f28d51a9c0b3/8e65b17755be6e064f642e2de60b8adfa04991d0b577dc856bc40acdcd617b39.jpg)
 
-
-## YAMAHA
