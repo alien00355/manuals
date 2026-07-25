@@ -6,6 +6,9 @@ __pycache__/
 # 构建输出（GitHub Actions 会自动构建）
 output/
 
+# MinerU 导出的临时文件夹
+md files/
+
 # 原始 PDF 文件（太大，不需要上传）
 pdf/
 
