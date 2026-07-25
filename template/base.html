@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="root" content="{{root}}">
+    <title>{{title}} — 家庭说明书</title>
+    <link rel="stylesheet" href="{{root}}static/style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="{{root}}index.html" class="site-logo">📖 家庭说明书</a>
+            <div class="search-wrapper">
+                <input type="text" id="search-input" class="search-input" placeholder="搜索说明书内容…" autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 面包屑导航 -->
+    {{breadcrumb}}
+
+    <!-- 主要内容区 -->
+    <main class="site-main">
+        {{content}}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <p>家庭说明书 — 所有产品指南，一站查阅</p>
+    </footer>
+
+    <script src="{{root}}static/search.js"></script>
+</body>
+</html>
