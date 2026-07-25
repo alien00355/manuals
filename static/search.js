@@ -187,3 +187,50 @@
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 })();
+
+/* ========================================
+   图片灯箱 — 点击放大查看
+   ======================================== */
+(function () {
+    // 创建灯箱 DOM
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.innerHTML = '<button class="lightbox-close">&times;</button><img src="" alt="">';
+    document.body.appendChild(overlay);
+
+    var img = overlay.querySelector('img');
+    var closeBtn = overlay.querySelector('.lightbox-close');
+
+    // 关闭灯箱
+    function close() {
+        overlay.classList.remove('active');
+        img.src = '';
+    }
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay || e.target === closeBtn) close();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+    });
+
+    // 给详情页中的所有图片绑定点击
+    function bindImages() {
+        var content = document.querySelector('.detail-content');
+        if (!content) return;
+        var images = content.querySelectorAll('img');
+        images.forEach(function (el) {
+            if (el.closest('.lightbox-overlay')) return;
+            el.addEventListener('click', function () {
+                img.src = el.src;
+                overlay.classList.add('active');
+            });
+        });
+    }
+
+    // 初始绑定 + DOM 变化时重新绑定
+    bindImages();
+    if (window.MutationObserver) {
+        var observer = new MutationObserver(bindImages);
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+})();
