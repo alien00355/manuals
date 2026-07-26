@@ -31,7 +31,7 @@ System Tested and Certified by NSF International against NSF/ANSI Standard 58 fo
 
 感谢您选用浩泽净水器，使用前请认真阅读本说明书。浩泽净水器将引领您和您家人、朋友共同步入享用健康鲜活水的新时代。
 
-## 一、简介
+## 产品简介
 
 “浩泽净水器”是一种终端净水设备。采用APO ^{+} 安全净水技术，0.0001微米美国RO膜逆渗透技术，通过国内外多项权威检测认证。工作原理是连接市政自来水，经过多重净化，最大程度上保证了水质安全健康。
 
@@ -46,17 +46,17 @@ System Tested and Certified by NSF International against NSF/ANSI Standard 58 fo
 ![](images/b76d4d76c6764f792a37925b9b990f33bd6be0f2755078b75b06fbe406dba137.jpg)  
 鲜活好水
 
-## 二、净水工艺
+## 净水工艺
 
 APO ^{+} 安全净水技术是Absorption, Purification and Ozone的缩写，即优化级吸附、优质过滤、鲜活净化技术，“+”即更优，真正保证水质新鲜、健康和安全。
 
 采用APO ^{+} 安全净水技术有如下优势：
 
-## 吸附更优Absorption+
+### 吸附更优
 
 采用复合滤芯、压缩活性炭滤芯和专业余氯吸附材料，不仅深层次吸附水中异色、异味、余氯、卤化烃、有机物、重金属离子等有害物质，有效改善水质口感，还能有效去除自来水因采用氯消毒而产生的三氯甲烷、四氯化碳等致癌余氯物。
 
-## 过滤更优Purification+
+### 过滤更优
 
 采用0.0001微米美国渗透膜等过滤系统，有效过滤农药、苯酚、溴酸盐等化学污染物，深度滤除重金属。
 
@@ -64,33 +64,33 @@ JZY-A2B3净水器（厨下式）：
 
 ![](images/b93db7f22c158bdeb75032633ffeda7ce0d5a1e9e664e9042b2db23307550d3d.jpg)
 
-## \mathsf{APO}^{+} 安全净水技术
+### 六级过滤系统
 
-■ 第一级：PPF
+第一级：PPF
 
 对自来水进行预处理，拦截水中泥沙、颗粒和胶体等杂质。
 
-■ 第二级：KDF
+第二级：KDF
 
 初步拦截重金属和控制结垢。
 
-■ 第三级：GAC
+第三级：GAC
 
 吸附水中异色、异味、余氯、卤化、有机物等有害物质。
 
-■ 第四级：专业余氯吸附材料
+第四级：专业余氯吸附材料
 
 高效去除自来水中因采用氯消毒而产生的三氯甲烷、四氯化碳等致癌氯化合物。
 
-## ■ 第五级：载银活性碳
+第五级：载银活性碳
 
 增强抑菌功能，进一步提升口感及水质安全等级。
 
-■ 第六级：0.0001微米美国逆渗透膜
+第六级：0.0001微米美国逆渗透膜
 
 采用微米级逆渗透膜，有效过滤农药、苯酚、溴酸盐等化学污染物，深度滤除重金属。
 
-## 三、随机附件
+## 随机附件
 
 您在使用本公司产品时，打开包装，内配有以下附件：
 
@@ -118,11 +118,11 @@ JZY-A2B3净水器（厨下式）：
 
 开箱后请仔细检查，如有疑问请拨打全国服务热线：400-820-2667。
 
-## 四、主要技术参数
+## 主要技术参数
 
 <table><tr><td>设备类型</td><td>JZY-A2B3净水器(厨下式)</td></tr><tr><td>额定电压</td><td>220VAC</td></tr><tr><td>额定频率</td><td>50Hz</td></tr><tr><td>额定功率</td><td>40W</td></tr><tr><td>额定总净水量</td><td>2000L</td></tr><tr><td>压力桶储水量</td><td>7L</td></tr><tr><td>纯水产量</td><td>6L/H</td></tr><tr><td>适用水压</td><td>0.06MPa-0.3MPa</td></tr><tr><td>工作压力反渗透膜</td><td>0.5-0.7 MPa</td></tr><tr><td>适用自来水水温</td><td>5-40°C</td></tr><tr><td>适合水质</td><td>市政自来水</td></tr><tr><td>出水水质</td><td>符合《生活饮用水水质处理器卫生安全与功能评价规范-反渗透处理装置》(2001)</td></tr><tr><td>重量/尺寸</td><td>9.5kg/440mm*230mm*412mm</td></tr><tr><td>压力桶尺寸</td><td>高400mm直径290mm</td></tr><tr><td>总溶解性固体去除率</td><td>进水浓度:750±40mg/L 最大出水允许浓度:187mg/L</td></tr><tr><td colspan="2">This system has been tested according to NSF/ANSFI 58 for reduction of the substances listed below. The concentration of the indicated substances in water entering the system was reduced to a concentration less than or equal to the permissible limit for water leaving the system as specified in NSF/ANSI 58.</td></tr><tr><td>回收率</td><td>20%-30%</td></tr><tr><td colspan="2">Recovery Rating means the percentage of the influent water to the membrane portion of the system that is available to the user as reverse osmosis treated water when the system is operated without a storage tank or when the storage tank is bypassed.</td></tr></table>
 
-## 五、主要结构与功能
+## 主机结构与功能
 
 JZY-A2B3净水器（厨下式）
 
@@ -145,13 +145,11 @@ JZY-A2B3净水器（厨下式）
 
 ⑥ 感应区域：机器安装完成，将浩泽水质安全保障卡放置感应区域，听到“嘀”的蜂鸣声，屏幕显示“安心服务365”即激活完成。
 
-## 六、功能特征
+## 功能特征
 
 电子显示屏
 
-## 安心 365 服务
-
-## 安心 365 服务 (2)
+安心 365 服务
 
 滤芯状态指示
 
@@ -165,7 +163,7 @@ JZY-A2B3净水器（厨下式）
 
 The company's Ozner JZY - A2B3 (XD) pure water machine is made of the principle of reverse osmosis technology is adopted to filter pure water equipment. Using the reverse osmosis membrane (RO membrane), using reverse osmosis water treatment technology make pure water, and can effectively remove tiny impurity in raw water, colloid, organics, heavy metals, soluble solids, bacteria, viruses and other harmful impurities. The RO system is NSF Certified for TDS reduction only. And not Performance Tested or Certified by NSF.
 
-## 七、调试步骤与使用方法
+## 调试与使用方法
 
 JZY-A2B3净水器（厨下式）
 
@@ -183,13 +181,13 @@ JZY-A2B3净水器（厨下式）
 
 TDS测试达标后打开压力桶阀门，正常使用
 
-## 管路安装示意图
+### 管路安装
 
 先断开用户自来水总阀，安装方法如图所示，将进水三通连接在自来水管上，将进水小球阀下端的螺纹处缠生料带8-10圈与进水三通相连接，剪一段合适长度的PE管套进水小球阀所附螺帽，与进水小球阀相连接，并用扳手将各连接处拧紧。
 
 ![](images/b5e0322ece9b3c20bee8da800fd5c31110bce1eef462ef2ee844fc1e3fff26de.jpg)
 
-## 外管路连接全图
+### 外管路连接
 
 ![](images/ed7f134598611e53a131ceb10c51f27bbcab3883cf1d96c5e24391ad9702c227.jpg)
 
@@ -198,7 +196,7 @@ TDS测试达标后打开压力桶阀门，正常使用
 ③接压力桶和水龙头
 后请仔细检查，如有疑问请拨打全国服务热线。
 
-## 八、使用须知
+## 使用须知
 
 ① 出故障后请不要自行处理，拨打浩泽全国服务热线报修：400-820-2667。
 
@@ -212,7 +210,7 @@ TDS测试达标后打开压力桶阀门，正常使用
 
 ⑥ 请保持出水口区域的清洁，出水口可用含75%的酒精棉进行清洁擦洗，确保出水不会因空气对水龙头污染而影响水质。
 
-## 九、售后服务
+## 售后服务
 
 ★ 替换滤芯型号：RO逆渗透滤芯：KFT-1812-50
 
@@ -244,13 +242,13 @@ PPF滤芯：KFT- PP- 252
 
 水质保障服务卡为买断式水机专用卡，主要用于首次装机激活机器，充值及首年的售后服务。次年购买水质保障服务卡相当于使用浩泽延保服务。一张服务卡延保一年。卡一经使用，不退不换。
 
-## 十、常见故障处理方法
+## 常见故障处理
 
 <table><tr><td>症状</td><td>处理方法</td></tr><tr><td>通电无任何显示</td><td>检查电源是否插好。电源插座是否有交流220V电压。检查保险丝是否损坏。</td></tr><tr><td>显示屏滤芯更换显示闪烁</td><td>在浩泽官方商场购买“水质保障服务卡”找专业售后人员上门更换滤芯</td></tr><tr><td>净水器上按键失效</td><td>切断电源再重启净水器。</td></tr><tr><td>净水器出水口不出水</td><td>检查自来水供水情况,如果自来水正常供水,请拨打全国服务热线,找专业人员维修。</td></tr></table>
 
-## 十一、安全注意事项
+## 安全注意事项
 
-## 必须阅读并切记这些安全注意事项
+必须阅读并切记这些安全注意事项
 
 \- 为了避免对您或他人造成可能的伤害或财产损失，请务必注意以下安全事项。
 
@@ -280,13 +278,13 @@ PPF滤芯：KFT- PP- 252
 **⚠️ 警告**
 
 
-## - 切勿擅自拆开或改装本机器！
+- 切勿擅自拆开或改装本机器！
 
 否则可能会导致故障火灾或漏水事故，如发现异常情况请与本公司专业人员联系，处理后方可使用。
 
 \- 在安装调试、维修、保养产品和更换部件时需断开电源！有发生触电的危险。
 
-## - 切勿弄湿机身！
+- 切勿弄湿机身！
 
 否则可能会导致因短路而发生火灾和触电事故。
 
@@ -294,7 +292,7 @@ PPF滤芯：KFT- PP- 252
 
 \- 切勿将机器放置在高温高湿的地方！可能损坏机器外观或导致触电、短路或火灾事故。
 
-## - 切勿使用已损坏的电源线或受损的插座！
+- 切勿使用已损坏的电源线或受损的插座！
 
 \- 切勿拉拽电源线或用湿手接触电源插头！有发生触电或火灾的危险。
 
@@ -306,13 +304,13 @@ PPF滤芯：KFT- PP- 252
 
 \- 产品出现异常声响、焦味或冒烟时，请先拔下电源插头，并与服务中心联系！有发生火灾的危险。
 
-## - 切勿在机器上方覆盖东西！
+- 切勿在机器上方覆盖东西！
 
 阻碍散热将可能导致机器损坏或火灾事故。
 
 \- 切勿将机器靠近火源或具有加热装置的地方！可能损导致机器损坏或火灾事故。
 
-## - 切勿在高水压条件下使用本机器！
+- 切勿在高水压条件下使用本机器！
 
 过高的水压条件下运行可能会导致机器爆管，造成机器漏水，而无法正常工作，甚至造成严重的财产损失。建议进水压力在0.06MPa-0.3MPa。
 
@@ -336,7 +334,7 @@ PPF滤芯：KFT- PP- 252
 
 在阳光直射下使用一段时间后，可能会造成微生物的大量滋生，使机器纯水水质下降，污染机器内部的过水部件。
 
-## - 勿将本机器放置在室外使用！
+- 勿将本机器放置在室外使用！
 
 放在室外使用，会造成机器纯水管路和一些部件的加速老化，使机器内部漏水或不能制纯水。
 
@@ -389,3 +387,5 @@ PPF滤芯：KFT- PP- 252
 全国服务热线：400-820-2667
 
 网址：http://www.ozner.net
+
+<!-- 标题改动：删除中文序号（一~十一），精简标题文字；吸附更优/过滤更优降为###；六级过滤系统改为###；警告子项取消##降为正文；删除■伪标题符号；合并重复的安心365服务标题 -->
