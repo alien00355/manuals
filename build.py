@@ -115,17 +115,79 @@ def extract_headings(markdown_text: str):
 
 def add_heading_ids(html: str, headings: list) -> str:
     """给渲染后的 HTML 标题标签添加 id 属性，使目录锚点可以跳转"""
-    # 按标题级别从高到低处理，避免嵌套匹配
     for h in headings:
-        # 转义标题中的正则特殊字符
         title_pattern = re.escape(h["title"])
-        # 匹配 <hN>标题内容</hN>，在 hN 后插入 id
         pattern = rf"(<h{h['level']}>)({title_pattern})(</h{h['level']}>)"
         replacement = rf'\1<span id="{h["anchor"]}"></span>\2\3'
-        # 只替换第一个未添加过 id 的匹配
         if f'id="{h["anchor"]}"' not in html:
             html = re.sub(pattern, replacement, html, count=1)
     return html
+
+
+def wrap_collapsible_sections(html: str) -> str:
+    """将 h2 标题及其后续内容包裹为折叠章节（默认折叠）"""
+    # 在 h2 前插入分隔标记
+    html = re.sub(r'(<h2[^>]*>)', r'<!--SECTION-->\1', html)
+    parts = html.split('<!--SECTION-->')
+    if not parts or not parts[0].strip():
+        parts = parts[1:]
+
+    result = [parts[0]] if parts and not re.search(r'<h2', parts[0]) else []
+
+    for part in parts:
+        if not re.search(r'<h2', part):
+            if result:
+                result[-1] += part
+            else:
+                result.append(part)
+            continue
+        result.append(part)
+
+    wrapped = []
+    first_h2_seen = False
+    for block in result:
+        m = re.match(r'(<h2[^>]*>.*?</h2>)(.*)', block, re.DOTALL)
+        if m:
+            heading_html = m.group(1)
+            body = m.group(2).strip()
+            # 默认展开第一个 h2 章节
+            if not first_h2_seen:
+                open_attr = ' open'
+                first_h2_seen = True
+            else:
+                open_attr = ''
+            section_id = re.search(r'id="([^"]*)"', heading_html)
+            sid = section_id.group(1) if section_id else f'section-{len(wrapped)}'
+            wrapped.append(
+                f'<section class="collapsible-section" data-section="{sid}">'
+                f'<details{open_attr}><summary class="section-toggle">{heading_html}'
+                f'<span class="toggle-icon"></span></summary>'
+                f'<div class="section-body">{body}</div>'
+                f'</details></section>'
+            )
+        else:
+            wrapped.append(block)
+
+    return '\n'.join(wrapped)
+
+
+def extract_section_texts(html: str) -> dict:
+    """从 HTML 中提取每个 h2/h3 章节的纯文本，用于详情页段内搜索"""
+    sections = {}
+    # 按 section 标签分割
+    for match in re.finditer(
+        r'<section[^>]*data-section="([^"]*)"[^>]*>.*?'
+        r'<summary[^>]*>(.*?)</summary>\s*'
+        r'<div class="section-body">(.*?)</div>\s*'
+        r'</details>\s*</section>',
+        html, re.DOTALL
+    ):
+        sid = match.group(1)
+        summary = re.sub(r'<[^>]+>', '', match.group(2)).strip()
+        body = re.sub(r'<[^>]+>', '', match.group(3))
+        body = re.sub(r'\s+', ' ', body).strip()
+        sections[sid] = {'title': summary, 'text': body}
+    return sections
 
 
 def beautify_tables(html: str) -> str:
@@ -292,10 +354,15 @@ def build():
                 body_html = add_heading_ids(body_html, headings)
                 # 移除正文中的第一个 h1 标题（已在页面头部显示，避免重复）
                 body_html = re.sub(r"^<h1>.*?</h1>\s*", "", body_html, count=1)
+                # 包裹 h2 章节为折叠块
+                body_html = wrap_collapsible_sections(body_html)
 
-            # 提取纯文本（用于搜索索引）
+            # 提取纯文本（用于搜索索引 — 详情页用分章节，全局索引用元数据）
             body_text = re.sub(r"<[^>]+>", "", body_html)
             body_text = re.sub(r"\s+", " ", body_text)
+
+            # 提取分章节纯文本（用于详情页段内搜索）
+            section_texts = extract_section_texts(body_html) if not is_external else {}
 
             manual = {
                 "id": str(rel_path).replace("\\", "/"),
@@ -310,6 +377,7 @@ def build():
                 "source_dir": md_file.parent,
                 "is_external": is_external,
                 "external_link": external_link,
+                "section_texts": section_texts,
             }
 
             manuals.append(manual)
@@ -375,8 +443,15 @@ def build():
             <div class="brand-info">品牌：<strong>{escape(m['brand'])}</strong>　类型：{escape(m['type'])}</div>
         </div>"""
 
+        # 分章节数据（用于详情页段内搜索）
+        section_script = ""
+        if m.get("section_texts"):
+            section_json = json.dumps(m["section_texts"], ensure_ascii=False)
+            section_script = f"<script>window.__MANUAL_SECTIONS__ = {section_json};</script>"
+
         # 内容区
         content_html = f"""
+        {section_script}
         <div class="detail-wrapper">
             {toc_html if m['headings'] else ''}
             <div class="detail-content">
@@ -509,7 +584,6 @@ def build():
                 "type": m["type"],
                 "category": m["category"],
                 "path": m["path"],
-                "content": m["body_text"],
             }
         )
 

@@ -1,32 +1,36 @@
 /* ========================================
-   家庭说明书 — 纯前端搜索（零外部依赖）
+   家庭说明书 — 搜索 + 折叠章节 + 图片灯箱
+   详情页：段内全文搜索 + 跳转展开
+   其他页：产品元数据搜索
    ======================================== */
 
 (function () {
     var searchInput = document.getElementById('search-input');
     var searchResults = document.getElementById('search-results');
-
-    // 从 meta 标签读取网站根路径
     var rootMeta = document.querySelector('meta[name="root"]');
     var ROOT = rootMeta ? rootMeta.content : './';
 
-    // 搜索数据
-    var manuals = [];
+    // 判断当前页面类型
+    var isDetailPage = !!(window.__MANUAL_SECTIONS__);
+    var sectionData = window.__MANUAL_SECTIONS__ || {};
+    var metadataIndex = [];
     var loaded = false;
 
-    // --- 加载搜索索引 ---
-    fetch(ROOT + 'search-index.json')
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-            manuals = data;
-            loaded = true;
-            console.log('搜索索引已加载，共 ' + manuals.length + ' 本说明书');
-        })
-        .catch(function (err) {
-            console.error('搜索索引加载失败:', err);
-        });
+    // === 加载 ===
+    if (isDetailPage) {
+        loaded = true;
+        searchInput.placeholder = '搜索本说明书内容…';
+    } else {
+        fetch(ROOT + 'search-index.json')
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                metadataIndex = data;
+                loaded = true;
+            })
+            .catch(function () {});
+    }
 
-    // --- 输入防抖 ---
+    // === 输入防抖 ===
     var timer = null;
     searchInput.addEventListener('input', function () {
         clearTimeout(timer);
@@ -34,140 +38,175 @@
         if (!q) {
             searchResults.classList.remove('active');
             searchResults.innerHTML = '';
+            clearHighlights();
             return;
         }
         timer = setTimeout(function () { doSearch(q); }, 200);
     });
 
-    // --- 点击外部关闭 ---
+    // === 点击外部关闭 ===
     document.addEventListener('click', function (e) {
         if (!searchResults.contains(e.target) && e.target !== searchInput) {
             searchResults.classList.remove('active');
         }
     });
 
-    // --- 聚焦时重新显示 ---
+    // === 聚焦重新显示 ===
     searchInput.addEventListener('focus', function () {
         if (this.value.trim() && searchResults.innerHTML) {
             searchResults.classList.add('active');
         }
     });
 
-    // --- 键盘导航 ---
+    // === 键盘导航 ===
     var selectedIdx = -1;
     searchInput.addEventListener('keydown', function (e) {
         var items = searchResults.querySelectorAll('.search-result-item');
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            selectedIdx = Math.min(selectedIdx + 1, items.length - 1);
-            updateSelection(items);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            selectedIdx = Math.max(selectedIdx - 1, 0);
-            updateSelection(items);
-        } else if (e.key === 'Enter') {
-            if (selectedIdx >= 0 && items[selectedIdx]) {
-                items[selectedIdx].click();
-            }
-        }
+        if (e.key === 'ArrowDown') { e.preventDefault(); selectedIdx = Math.min(selectedIdx + 1, items.length - 1); updateSelection(items); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); selectedIdx = Math.max(selectedIdx - 1, 0); updateSelection(items); }
+        else if (e.key === 'Enter' && selectedIdx >= 0 && items[selectedIdx]) { items[selectedIdx].click(); }
     });
 
     function updateSelection(items) {
-        items.forEach(function (el, i) {
-            if (i === selectedIdx) { el.classList.add('selected'); }
-            else { el.classList.remove('selected'); }
-        });
+        items.forEach(function (el, i) { el.classList.toggle('selected', i === selectedIdx); });
     }
 
-    // --- 核心搜索 ---
+    // === 核心搜索 ===
     function doSearch(query) {
-        if (!loaded || !manuals.length) {
-            searchResults.innerHTML = '<div class="search-no-result">搜索索引加载中…</div>';
-            searchResults.classList.add('active');
-            return;
-        }
+        if (!loaded) { searchResults.innerHTML = '<div class="search-no-result">搜索索引加载中…</div>'; searchResults.classList.add('active'); return; }
+        selectedIdx = -1;
 
+        if (isDetailPage) {
+            searchInSections(query);
+        } else {
+            searchMetadata(query);
+        }
+    }
+
+    // --- 详情页：段内搜索 ---
+    function searchInSections(query) {
         var q = query.toLowerCase();
         var results = [];
 
-        manuals.forEach(function (m) {
-            var score = 0;
-            var matchField = '';
-
-            // 标题匹配（权重最高）
-            if (m.title.toLowerCase().indexOf(q) >= 0) {
-                score += 100;
-                matchField = 'title';
-            }
-            // 品牌匹配
-            if (m.brand && m.brand.toLowerCase().indexOf(q) >= 0) {
-                score += 50;
-                if (!matchField) matchField = 'brand';
-            }
-            // 类型匹配
-            if (m.type && m.type.toLowerCase().indexOf(q) >= 0) {
-                score += 50;
-                if (!matchField) matchField = 'type';
-            }
-            // 正文匹配
-            var contentIdx = m.content.toLowerCase().indexOf(q);
-            if (contentIdx >= 0) {
-                score += 10;
-                if (!matchField) matchField = 'content';
-            }
-
-            if (score > 0) {
-                results.push({
-                    manual: m,
-                    score: score,
-                    contentIdx: contentIdx,
-                });
+        Object.keys(sectionData).forEach(function (sid) {
+            var sec = sectionData[sid];
+            var text = (sec.title + ' ' + sec.text).toLowerCase();
+            var idx = text.indexOf(q);
+            if (idx >= 0) {
+                results.push({ section: sid, title: sec.title, text: sec.text, idx: idx });
             }
         });
 
-        // 按得分排序
-        results.sort(function (a, b) { return b.score - a.score; });
+        if (!results.length) {
+            searchResults.innerHTML = '<div class="search-no-result">本页未找到相关内容</div>';
+            searchResults.classList.add('active');
+            clearHighlights();
+            return;
+        }
 
-        renderResults(results.slice(0, 15), query);
+        renderSectionResults(results, query);
     }
 
-    // --- 渲染结果 ---
-    function renderResults(items, query) {
+    function renderSectionResults(items, query) {
         searchResults.innerHTML = '';
+        var q = query.toLowerCase();
 
-        if (!items.length) {
+        items.forEach(function (item) {
+            var el = document.createElement('div');
+            el.className = 'search-result-item section-result';
+            el.setAttribute('data-section', item.section);
+
+            // 在 text 中找匹配片段
+            var txt = item.text;
+            var idx = txt.toLowerCase().indexOf(q);
+            var start = Math.max(0, idx - 20);
+            var end = Math.min(txt.length, idx + query.length + 30);
+            var snippet = (start > 0 ? '…' : '') + escapeHtml(txt.substring(start, end)) + (end < txt.length ? '…' : '');
+            snippet = snippet.replace(new RegExp(escapeRegex(query), 'gi'), '<mark>$&</mark>');
+
+            el.innerHTML = '<div class="search-result-title">' + escapeHtml(item.title) + '</div>' +
+                '<div class="search-result-snippet">' + snippet + '</div>';
+
+            el.addEventListener('click', function () {
+                expandAndScroll(item.section, query);
+                searchResults.classList.remove('active');
+            });
+
+            searchResults.appendChild(el);
+        });
+
+        searchResults.classList.add('active');
+    }
+
+    function expandAndScroll(sectionId, query) {
+        // 找到对应 <details> 并展开
+        var section = document.querySelector('.collapsible-section[data-section="' + sectionId + '"]');
+        if (!section) return;
+
+        var details = section.querySelector('details');
+        if (details && !details.open) {
+            details.open = true;
+        }
+
+        // 滚动到该章节
+        setTimeout(function () {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // 高亮匹配文字
+            highlightInSection(section, query);
+        }, 150);
+    }
+
+    function highlightInSection(section, query) {
+        clearHighlights();
+        var body = section.querySelector('.section-body');
+        if (!body) return;
+        var regex = new RegExp('(' + escapeRegex(query) + ')', 'gi');
+        body.innerHTML = body.innerHTML.replace(regex, '<mark class="search-highlight">$1</mark>');
+    }
+
+    function clearHighlights() {
+        var marks = document.querySelectorAll('.section-body .search-highlight');
+        marks.forEach(function (m) {
+            var parent = m.parentNode;
+            parent.replaceChild(document.createTextNode(m.textContent), m);
+            parent.normalize();
+        });
+    }
+
+    // --- 非详情页：元数据搜索 ---
+    function searchMetadata(query) {
+        var q = query.toLowerCase();
+        var results = [];
+
+        metadataIndex.forEach(function (m) {
+            var score = 0;
+            if (m.title.toLowerCase().indexOf(q) >= 0) score += 100;
+            if (m.brand && m.brand.toLowerCase().indexOf(q) >= 0) score += 50;
+            if (m.type && m.type.toLowerCase().indexOf(q) >= 0) score += 50;
+            if (m.category.toLowerCase().indexOf(q) >= 0) score += 30;
+            if (score > 0) results.push({ manual: m, score: score });
+        });
+
+        results.sort(function (a, b) { return b.score - a.score; });
+        results = results.slice(0, 15);
+
+        if (!results.length) {
             searchResults.innerHTML = '<div class="search-no-result">未找到相关内容，换个关键词试试</div>';
             searchResults.classList.add('active');
             return;
         }
 
-        items.forEach(function (item) {
-            var m = item.manual;
+        searchResults.innerHTML = '';
+        results.forEach(function (r) {
+            var m = r.manual;
             var el = document.createElement('a');
             el.className = 'search-result-item';
             el.href = ROOT + m.path + '/index.html';
 
-            // 生成内容片段
-            var snippet = '';
-            if (item.contentIdx >= 0 && m.content) {
-                var start = Math.max(0, item.contentIdx - 25);
-                var end = Math.min(m.content.length, item.contentIdx + query.length + 40);
-                snippet = (start > 0 ? '…' : '') +
-                    escapeHtml(m.content.substring(start, end)).replace(
-                        new RegExp(escapeRegex(query), 'gi'),
-                        '<mark>$&</mark>'
-                    ) +
-                    (end < m.content.length ? '…' : '');
-            } else if (m.content) {
-                snippet = escapeHtml(m.content.substring(0, 80)) + '…';
-            }
-
             var typeTag = m.type ? '<span class="tag tag-type">' + escapeHtml(m.type) + '</span>' : '';
             var brandTag = m.brand ? '<span class="tag tag-brand">' + escapeHtml(m.brand) + '</span>' : '';
 
-            el.innerHTML =
-                '<div class="search-result-title">' + escapeHtml(m.title) + '</div>' +
-                (snippet ? '<div class="search-result-snippet">' + snippet + '</div>' : '') +
+            el.innerHTML = '<div class="search-result-title">' + escapeHtml(m.title) + '</div>' +
                 '<div class="search-result-meta">' + typeTag + ' ' + brandTag + ' · ' + escapeHtml(m.category) + '</div>';
 
             searchResults.appendChild(el);
@@ -176,7 +215,27 @@
         searchResults.classList.add('active');
     }
 
-    // --- 工具函数 ---
+    // === 折叠章节：TOC 点击展开 ===
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest('.toc-list a');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        var anchor = href.substring(1);
+        var span = document.getElementById(anchor);
+        if (!span) return;
+        var section = span.closest('.collapsible-section');
+        if (!section) return;
+        var details = section.querySelector('details');
+        if (details && !details.open) {
+            details.open = true;
+        }
+        setTimeout(function () {
+            span.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    });
+
+    // === 工具函数 ===
     function escapeHtml(text) {
         var div = document.createElement('div');
         div.textContent = text;
@@ -189,10 +248,9 @@
 })();
 
 /* ========================================
-   图片灯箱 — 点击放大查看
+   图片灯箱
    ======================================== */
 (function () {
-    // 创建灯箱 DOM
     var overlay = document.createElement('div');
     overlay.className = 'lightbox-overlay';
     overlay.innerHTML = '<button class="lightbox-close">&times;</button><img src="" alt="">';
@@ -201,36 +259,23 @@
     var img = overlay.querySelector('img');
     var closeBtn = overlay.querySelector('.lightbox-close');
 
-    // 关闭灯箱
-    function close() {
-        overlay.classList.remove('active');
-        img.src = '';
-    }
-    overlay.addEventListener('click', function (e) {
-        if (e.target === overlay || e.target === closeBtn) close();
-    });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') close();
-    });
+    function close() { overlay.classList.remove('active'); img.src = ''; }
+    overlay.addEventListener('click', function (e) { if (e.target === overlay || e.target === closeBtn) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 
-    // 给详情页中的所有图片绑定点击
     function bindImages() {
         var content = document.querySelector('.detail-content');
         if (!content) return;
-        var images = content.querySelectorAll('img');
-        images.forEach(function (el) {
+        content.querySelectorAll('img').forEach(function (el) {
             if (el.closest('.lightbox-overlay')) return;
-            el.addEventListener('click', function () {
-                img.src = el.src;
-                overlay.classList.add('active');
-            });
+            if (el._lightboxBound) return;
+            el._lightboxBound = true;
+            el.addEventListener('click', function () { img.src = el.src; overlay.classList.add('active'); });
         });
     }
 
-    // 初始绑定 + DOM 变化时重新绑定
     bindImages();
     if (window.MutationObserver) {
-        var observer = new MutationObserver(bindImages);
-        observer.observe(document.body, { childList: true, subtree: true });
+        new MutationObserver(bindImages).observe(document.body, { childList: true, subtree: true });
     }
 })();

@@ -580,6 +580,116 @@ a:hover { color: var(--color-accent); }
 .search-highlight { background: #FEF3C7; padding: 0 2px; border-radius: 2px; }
 
 /* ========================================
+   折叠章节 (Collapsible Sections)
+   ======================================== */
+.collapsible-section {
+    margin: 0.4em 0;
+}
+
+.collapsible-section details {
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--color-card-alt);
+    transition: box-shadow 0.2s;
+}
+
+.collapsible-section details[open] {
+    box-shadow: var(--shadow-xs);
+}
+
+.collapsible-section summary.section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    transition: background 0.15s;
+    border-radius: var(--radius-sm);
+}
+
+.collapsible-section summary.section-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.collapsible-section summary.section-toggle:hover {
+    background: var(--color-tag-bg);
+}
+
+.collapsible-section summary.section-toggle h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 1.08rem !important;
+    flex: 1;
+}
+
+.collapsible-section summary.section-toggle h2::before {
+    display: none;
+}
+
+/* 展开/折叠指示箭头 */
+.toggle-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    position: relative;
+    margin-left: 0.6rem;
+    transition: transform 0.2s;
+}
+.toggle-icon::before,
+.toggle-icon::after {
+    content: "";
+    position: absolute;
+    background: var(--color-text-light);
+    border-radius: 1px;
+    transition: all 0.25s;
+}
+.toggle-icon::before {
+    top: 50%;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    transform: translateY(-50%);
+}
+.toggle-icon::after {
+    left: 50%;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    transform: translateX(-50%);
+}
+details[open] .toggle-icon { transform: rotate(180deg); }
+details[open] .toggle-icon::after { transform: translateX(-50%) scaleY(0); }
+
+/* 章节内容 */
+.section-body {
+    padding: 0.5rem 1.2rem 1.2rem;
+}
+
+.section-body > *:first-child { margin-top: 0; }
+
+/* 详情页搜索结果高亮 */
+.section-result {
+    cursor: pointer;
+}
+
+/* 响应式：折叠章节 */
+@media (max-width: 768px) {
+    .collapsible-section summary.section-toggle {
+        padding: 0.6rem 0.8rem;
+    }
+    .collapsible-section summary.section-toggle h2 {
+        font-size: 1rem !important;
+    }
+    .section-body {
+        padding: 0.4rem 0.9rem 1rem;
+    }
+}
+
+/* ========================================
    图片灯箱
    ======================================== */
 .lightbox-overlay {
